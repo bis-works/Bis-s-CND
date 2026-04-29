@@ -145,7 +145,7 @@ let cnd = {
                     pages: [
                         {
                             type: "image",
-                            src: "images/Обложка статьи о музыке2.png"
+                            src: "images/Журнал.png"
                         },
                         {
                             type: "image",
