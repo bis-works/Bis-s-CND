@@ -25,7 +25,7 @@ let cnd = {
                             biography: "Каори Нисимура — уроженец Японии, сохранивший любовь к эстетике и атмосфере своей родной страны. Переехав в Калифорнию в поисках новых впечатлений, он привнёс в свою жизнь сочетание спокойствия восточной культуры и яркой энергии городских событий. Его музыкальные вкусы столь же необычны, как и стиль — от breakcore и drum and bass до ambient-композиций, создающих особую атмосферу. Для Каори музыка — это пространство эксперимента, эмоций и самовыражения.",
                             favorite_janres: "Breakcore, Ambiend, Drum and bass",
                             favorite_song: 'Freddie Dredd - Endless sea',
-                            src: "audio/freddie-dredd-endless-sea-prod.-ryan-c_(get-tune.net).mp3"
+                            src: "audio/TOKYOPILL - Untitled-1.mp3"
                         },
                         {
                             type: "template",
@@ -159,7 +159,7 @@ let cnd = {
                             biography: "Каори Нисимура — уроженец Японии, сохранивший любовь к эстетике и атмосфере своей родной страны. Переехав в Калифорнию в поисках новых впечатлений, он привнёс в свою жизнь сочетание спокойствия восточной культуры и яркой энергии городских событий. Его музыкальные вкусы столь же необычны, как и стиль — от breakcore и drum and bass до ambient-композиций, создающих особую атмосферу. Для Каори музыка — это пространство эксперимента, эмоций и самовыражения.",
                             favorite_janres: "Breakcore, Ambiend, Drum and bass",
                             favorite_song: 'Freddie Dredd - Endless sea',
-                            src: "audio/freddie-dredd-endless-sea-prod.-ryan-c_(get-tune.net).mp3"
+                            src: "audio/TOKYOPILL - Untitled-1.mp3"
                         },
                         {
                             type: "template",
