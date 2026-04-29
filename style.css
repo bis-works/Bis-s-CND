@@ -1,0 +1,301 @@
+.bg-body-tertiary {
+    background-color: rgb(34, 34, 34) !important;
+}
+
+.color-white {
+    color: white !important;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: rgb(32, 32, 32);
+}
+
+.reklama {
+    display: flex;
+    background-color: rgb(63, 63, 63);
+    height: 30vh;
+    align-items: center;
+    justify-content: center;
+
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.box-shadow {
+    box-shadow: rgb(255, 255, 255) 0px 0px 15px;
+}
+
+.main-title {
+    text-align: center;
+}
+
+.padding {
+    padding: 20px;
+}
+
+.content-right {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.button-journal {
+    background-color: rgb(174, 0, 255);
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px white;
+    width: 20vh;
+    height: 8vh;
+    color: white;
+    font-weight: 900;
+    transition: 1s;
+}
+
+.button-journal:hover {
+    background-color: rgb(191, 52, 255);
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgb(238, 54, 255);
+    width: 20vh;
+    height: 8vh;
+    color: white;
+    font-weight: 900;
+    font-size: 18px;
+    transition: 1s;
+}
+
+.footer {
+    background-color: rgb(22, 22, 22);
+    min-height: 30vh;
+}
+
+.tiktok-ico {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+
+    /* Делаем фон больше самого блока */
+    background: #3F5EFB;
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background-size: 300% 300%;
+
+    /* Подключаем анимацию */
+    animation: gradient-animation 5s ease infinite;
+}
+
+.discord-ico {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+
+    /* Делаем фон больше самого блока */
+    background: #020024;
+    background: linear-gradient(45deg, rgb(2, 0, 39) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    background-size: 300% 300%;
+
+    /* Подключаем анимацию */
+    animation: gradient-animation 5s ease infinite;
+}
+
+.aw-ico {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+
+    /* Делаем фон больше самого блока */
+    background: #833AB4;
+    background: linear-gradient(135deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background-size: 300% 300%;
+
+    /* Подключаем анимацию */
+    animation: gradient-animation 5s ease infinite;
+}
+
+.aw-you-tube-ico {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+
+    /* Делаем фон больше самого блока */
+    background: #ffa3a3;
+    background: linear-gradient(135deg, rgba(255, 163, 163, 1) 0%, rgba(255, 0, 0, 1) 50%, rgba(38, 38, 38, 1) 100%);
+    background-size: 300% 300%;
+
+    /* Подключаем анимацию */
+    animation: gradient-animation 5s ease infinite;
+}
+
+/* Описываем движение фона */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ico-div {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    background-color: rgb(26, 26, 26);
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 200px;
+}
+
+.ico-div>p {
+    max-width: 100px;
+    color: rgb(161, 161, 161);
+}
+
+.footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.footer-link>a {
+    text-decoration: none;
+    color: rgb(77, 77, 77);
+}
+
+.big-reklama {
+    display: flex;
+    background-color: rgb(63, 63, 63);
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+.carousel-inner,
+.carousel-item {
+    height: 900px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+
+/* цифровая страница */
+.digital-page {
+    height: 900px;
+    min-height: 900px;
+    overflow: hidden;
+    /* десктоп без скролла */
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background: url(images/Фон.png);
+    background-size: 100%;
+}
+
+.music-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.music-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid white;
+    display: block;
+}
+
+@media (max-width:768px) {
+
+    .carousel-inner,
+    .carousel-item {
+        height: 75vh;
+        /* высота как у обычной страницы на телефоне */
+        min-height: 600px;
+    }
+
+    .carousel-item img {
+        height: 75vh;
+        object-fit: contain;
+    }
+
+    /* цифровая страница остается той же высоты что и слайды,
+но внутри появляется прокрутка */
+    .digital-page {
+        height: 75vh;
+        min-height: 600px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px;
+        padding-bottom: 50px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* чтобы скролл не был резким */
+    .digital-page::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .music-image img {
+        height: 220px;
+    }
+
+    .bio-text {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .song-name {
+        font-size: 16px;
+    }
+
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    height: 120px;
+    /* ← уменьшаешь зону клика */
+    align-items: center;
+}
+
+.carousel {
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}

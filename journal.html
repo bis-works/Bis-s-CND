@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bis`s CND</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand color-white" aria-disabled="true">Bis</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active color-white" aria-current="page" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link color-white" href="journals.html">Журналы</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle color-white" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Статьи
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item color-white" href="#">О Японии</a></li>
+                            <li><a class="dropdown-item color-white" href="#">Установления губернатора</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item color-white" href="papers.html">Все статьи</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link color-white" href="video.html">Видеоролики</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link color-white" href="ads.html">Реклама</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle color-white" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Ваш контент
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item color-white" href="#">Ваш видеоролик</a></li>
+                            <li><a class="dropdown-item color-white" href="#">Ваш журнал</a></li>
+                            <li><a class="dropdown-item color-white" href="#">Ваша статья</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item color-white" href="#">Заказать рекламу</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Введите запрос" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container my-3" v-if="journals">
+        <div class="row" v-if="selectedJournal">
+            <div id="journal" class="col-md-12">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button v-for="(page, index) in selectedJournal.pages" :key="index" type="button"
+                            data-bs-target="#carouselExampleIndicators" :data-bs-slide-to="index"
+                            :class="{ active: index === 0 }" aria-current="true">
+                        </button>
+                    </div>
+                    <div v-if="selectedJournal" class="carousel-inner">
+
+                        <div v-for="(page,index) in selectedJournal.pages" :key="index"
+                            :class="['carousel-item',{active:index===0}]">
+                            <img v-if="page.type==='image'" :src="page.src" class="d-block w-100">
+                            <div v-else-if="page.type==='template'">
+                                <div v-if="page.template==='musicPage'" class="digital-page">
+                                    <div class="row">
+                                        <div class="music-image">
+                                            <img :src="page.image" alt="">
+                                        </div>
+                                        <h1>Следующий человек в списке: {{ page.name }}</h1>
+                                        <h3>Вот небольшая биография:</h3>
+                                        <p class="bio-text">{{ page.biography }}</p>
+                                        <div class="col-md-6">
+                                            <h3>Любимые жанры: </h3>
+                                            <p>{{page.favorite_janres }}</p>
+                                            <h3>А выбранной любимой музыкой стала:</h3>
+                                        </div>
+                                        <div class="col-md-6 audio">
+                                            <p class="song-name">{{ page.favorite_song }}</p>
+                                            <audio :ref="'audio' + index" controls>
+                                                <source :src="page.src" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button onclick="location.href='#journal'" class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button onclick="location.href='#journal'" class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <!-- Добавляем префикс selectedJournal -->
+                <h1>{{ selectedJournal.name }}</h1>
+                <h2>{{ selectedJournal.smalldescription }}</h2>
+                <p>{{ selectedJournal.description }}</p>
+            </div>
+        </div>
+        <div v-else class="text-center mt-5">
+            <h2>Журнал не найден</h2>
+            <a href="index.html">Вернуться на главную</a>
+        </div>
+    </div>
+
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex flex-column gap-2 footer-link">
+                    <h3>Сотрудничество</h3>
+                    <a href="">Заказать рекламу</a>
+                    <a href="">Выложить свое видео</a>
+                    <a href="">Выложыть свою статью</a>
+                    <a href="">Выложыть свой журнал</a>
+                </div>
+                <div class="col-md-4 d-flex flex-column gap-2 footer-link">
+                    <h3>О проекте</h3>
+                    <a href="">О фракции СМИ</a>
+                    <a href="">О Atlant World</a>
+                    <a href="">О разработчике</a>
+                    <a href="">Предложить идею</a>
+                </div>
+                <div class="col-md-4 d-flex flex-column gap-2 footer-link">
+                    <h3>Помощь</h3>
+                    <a href="">О нас</a>
+                    <a href="">Заказать сайт</a>
+                    <a href="">Поддержать автора</a>
+                </div>
+                <div class="col-md-12 icons">
+                    <div class="ico-div">
+                        <p>Atlant World Tik Tok:</p>
+                        <a href="https://www.tiktok.com/@atlantworld_official">
+                            <div class="tiktok-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFElEQVR4nO2aXYiNQRjHf47Fsliu7C5LW7ZordwRKa6PQkrulAuXSj5iXVoKuZGS0iYuXHDlRqlVy0pprQtWrM8QV5L9sGutfTX6T03TOfZ9OWffeev8azrnmed5533+Z56ZeWbmQAUVVPCv2AJ0AkNAlHIZlC/5pCTaA3A+KlKOJ+kJ88AocBCoJ33Uy5dR+RarZ+7I2DwYGg7LNxNmk2JQxnWEhzr5NhDH2MZiqIji+lcOIrcLDNpuIJc1IsNFZqCWrBH5rjbnSD4p+UDWiawGJoD3QE0Wicx26q6r7lrCsRKlSWSkAJFFwDvV3wQaskSk2qtvBvqlMzndVWAv0BgqEZtazCqgmweccRbiCHgVKpEfHhGzrtwVCYv5wC6nd4ImMtN7xy1grmNXEzqRMbU5w3uHKS+AHUBVCESWAkeALuCjeuBGDCK9zvevwIO0iJjp9KwzmP1i8VNylfcOQ2wf8MZ77u1UEjEp9UPZTijedwNrCrQxLnn6X95h8q5twB5g+VQRMalGj/PrbZykjThE4qKkRM7L5qWzAavS9Hm5QBu/JOdCItKswWvivlV1jd7ANeVz6ETapb/khFmfM5WaGF/rbZUnpJ8WEpHH0m+WvF9yn5Om+wiSyKD0dh/RJXlngjZTJ1ItnclmLfon2bbmpDfjBM1ckWayVHtkSHobRt2StxexXyW92Q3awzYjf0rmf+mJPJF+g+Q2yT1OCoLz63dKf0F1ecn34jhTTiKnpD8nuRb44JDZCqxUD9mV/wuwRPZXVHc0bSItim8zTppU1+qQiQqsJ+scu3HlZsvSJmLQIZtHzuxleuYYcB94rdAxYbdQ+gXAcz1nEk1CIFILPHPI2J4phhWOfY93CJEUUamz3ybHuRGNmfWOk+ZzE3DR2Y/0JjgtmTIitmc6nFzKFv+Wa0yJZrGVP3Ui7lpxGnjqHMYNK505oUSzVIjKScRH0mPQJIji+jcgwxCu3Hwslm/fiAG7Eh8i41dveRmPisz/zjKlQINIJLoMRVfAUdavpy3y6kL3TDZzfxiooIIK+IPfupUke82dgmkAAAAASUVORK5CYII="
+                                    alt="tiktok--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Tik Tok СМИ:</p>
+                        <a href="https://www.tiktok.com/@atlantworld_official">
+                            <div class="tiktok-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFElEQVR4nO2aXYiNQRjHf47Fsliu7C5LW7ZordwRKa6PQkrulAuXSj5iXVoKuZGS0iYuXHDlRqlVy0pprQtWrM8QV5L9sGutfTX6T03TOfZ9OWffeev8azrnmed5533+Z56ZeWbmQAUVVPCv2AJ0AkNAlHIZlC/5pCTaA3A+KlKOJ+kJ88AocBCoJ33Uy5dR+RarZ+7I2DwYGg7LNxNmk2JQxnWEhzr5NhDH2MZiqIji+lcOIrcLDNpuIJc1IsNFZqCWrBH5rjbnSD4p+UDWiawGJoD3QE0Wicx26q6r7lrCsRKlSWSkAJFFwDvV3wQaskSk2qtvBvqlMzndVWAv0BgqEZtazCqgmweccRbiCHgVKpEfHhGzrtwVCYv5wC6nd4ImMtN7xy1grmNXEzqRMbU5w3uHKS+AHUBVCESWAkeALuCjeuBGDCK9zvevwIO0iJjp9KwzmP1i8VNylfcOQ2wf8MZ77u1UEjEp9UPZTijedwNrCrQxLnn6X95h8q5twB5g+VQRMalGj/PrbZykjThE4qKkRM7L5qWzAavS9Hm5QBu/JOdCItKswWvivlV1jd7ANeVz6ETapb/khFmfM5WaGF/rbZUnpJ8WEpHH0m+WvF9yn5Om+wiSyKD0dh/RJXlngjZTJ1ItnclmLfon2bbmpDfjBM1ckWayVHtkSHobRt2StxexXyW92Q3awzYjf0rmf+mJPJF+g+Q2yT1OCoLz63dKf0F1ecn34jhTTiKnpD8nuRb44JDZCqxUD9mV/wuwRPZXVHc0bSItim8zTppU1+qQiQqsJ+scu3HlZsvSJmLQIZtHzuxleuYYcB94rdAxYbdQ+gXAcz1nEk1CIFILPHPI2J4phhWOfY93CJEUUamz3ybHuRGNmfWOk+ZzE3DR2Y/0JjgtmTIitmc6nFzKFv+Wa0yJZrGVP3Ui7lpxGnjqHMYNK505oUSzVIjKScRH0mPQJIji+jcgwxCu3Hwslm/fiAG7Eh8i41dveRmPisz/zjKlQINIJLoMRVfAUdavpy3y6kL3TDZzfxiooIIK+IPfupUke82dgmkAAAAASUVORK5CYII="
+                                    alt="tiktok--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Tik Tok Разработчика:</p>
+                        <a href="https://www.tiktok.com/@bis_0006">
+                            <div class="tiktok-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFElEQVR4nO2aXYiNQRjHf47Fsliu7C5LW7ZordwRKa6PQkrulAuXSj5iXVoKuZGS0iYuXHDlRqlVy0pprQtWrM8QV5L9sGutfTX6T03TOfZ9OWffeev8azrnmed5533+Z56ZeWbmQAUVVPCv2AJ0AkNAlHIZlC/5pCTaA3A+KlKOJ+kJ88AocBCoJ33Uy5dR+RarZ+7I2DwYGg7LNxNmk2JQxnWEhzr5NhDH2MZiqIji+lcOIrcLDNpuIJc1IsNFZqCWrBH5rjbnSD4p+UDWiawGJoD3QE0Wicx26q6r7lrCsRKlSWSkAJFFwDvV3wQaskSk2qtvBvqlMzndVWAv0BgqEZtazCqgmweccRbiCHgVKpEfHhGzrtwVCYv5wC6nd4ImMtN7xy1grmNXEzqRMbU5w3uHKS+AHUBVCESWAkeALuCjeuBGDCK9zvevwIO0iJjp9KwzmP1i8VNylfcOQ2wf8MZ77u1UEjEp9UPZTijedwNrCrQxLnn6X95h8q5twB5g+VQRMalGj/PrbZykjThE4qKkRM7L5qWzAavS9Hm5QBu/JOdCItKswWvivlV1jd7ANeVz6ETapb/khFmfM5WaGF/rbZUnpJ8WEpHH0m+WvF9yn5Om+wiSyKD0dh/RJXlngjZTJ1ItnclmLfon2bbmpDfjBM1ckWayVHtkSHobRt2StxexXyW92Q3awzYjf0rmf+mJPJF+g+Q2yT1OCoLz63dKf0F1ecn34jhTTiKnpD8nuRb44JDZCqxUD9mV/wuwRPZXVHc0bSItim8zTppU1+qQiQqsJ+scu3HlZsvSJmLQIZtHzuxleuYYcB94rdAxYbdQ+gXAcz1nEk1CIFILPHPI2J4phhWOfY93CJEUUamz3ybHuRGNmfWOk+ZzE3DR2Y/0JjgtmTIitmc6nFzKFv+Wa0yJZrGVP3Ui7lpxGnjqHMYNK505oUSzVIjKScRH0mPQJIji+jcgwxCu3Hwslm/fiAG7Eh8i41dveRmPisz/zjKlQINIJLoMRVfAUdavpy3y6kL3TDZzfxiooIIK+IPfupUke82dgmkAAAAASUVORK5CYII="
+                                    alt="tiktok--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Atlant World discord:</p>
+                        <a href="https://discord.gg/CHFp6rQaC">
+                            <div class="discord-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEGElEQVR4nO2YX2hWZRzHP9PVUhi5sKbWXdO0jYmoLTDB7oLmQhO8yDYr8WJ44T8sBqHIbryxCzOxi8qGUFv/DMIgJ/4diLpFsVnq1AtXTZxQ05gJLn7wPfBw3nPOe87eM33F84ED7/v8/jy/85znz+/5QUZGRkbGA8bzwDrgE6AHuAUcBkpi2JrOCdl0y4f5Mp/3hGeArUA/MBry1MXwUxdh368+nh6PF5gK7AZGnA6HgG+BTcArQKfau4CDQB9wA/hPj/3ulaxLup2yNR/fyafn3/r6UH2nQj3wl5zfATqABqAcWKZpcS1ihPM9g/Jhvsrl+yv1ZfI/gVcLfYmXNJqjGslZwBNAa0DwV4FPNbpLgTlABfCIngq1LZXOZ8CAz8c1YLt0nwN+VLvFsGisL1EKXJSjnVqgzb7PfxrYAFQXMFg1wEbgjG/aNqvPD9R2QTElZrUcXAIeBWY4HdnXeYH0qXO+gj3T1fcl/beYEvOrjBv130anCVjC+LNEfXk0KhaLKRGLnYVm8/t+U+qsp0Rr5XMZ2aIuFloV0764Bo8B/8ioiuKhSjH9rRjzskwGZyk+uhXba3GU26TcQvHRotgsxkhKdNKOan8vNmqcbCAyOZ0nxYGYWaztJpuB88qNftfhVpqyjUeJs3vNJYItUrL0IY7TjpD86cuQgRiLjZ990rfBCOWAlNzDKN/Jf0MbxOPAcv239jdTsvHzlnQt8w7lDynFueCclK45dnlH7cdTsvFT7SSpoZemUZ0hE8jPLek/6Wt/Su03U7LxM8E55yz/y6FBwiPE42aeoIZTsgnimPTtrpTDRgn3Eg9vmrw9hqmVxCaIj6W/Pki4W0LbueLQ5Czc5Vq4rzsL942UbIJ4V/q7goQHJTTHcbCtsj1kK/0iYvtNahPECtn8EHX/SHJhKtWU/E2H2zl97okp24RVYX7JkQBXJJwdslMsiLmbpcVE9Rn0lWYr1stBhkPO9dLPWmdHm8n4MxM4qj7XBMinS3Y9yPi2hJUhh9CAU9H4CJiWfvxMk2+vcjMQUtiolNxizqFHwgMhU2iqyj13nQLaN0o1ygoIfjKwUv3elu+76iuoOGexfS89izmHaufA6lAHQdRq5/EKaF420KnSjaUfL6ouVanbXJkOwWe1UFcBO4BDvurlHfmujXjpr50sIDSVqndepi9PxcSmwfsxKolxH/MVNV1f1g7nvUTe6uMCp45kz096waDps8cp05jOe8B+4JTuG4Ma8RH9Pi/ZfunWO9u++fJTJp1DTjwW23xiMkmly2Hf9GnXLrJQKbe1/1vgbbJGPrw0fqH6aHeSQy8P26bYElOhdKAvYkpYabNQmiP89yqGKaREjeq8Vin/WSPUliCtiKJEvobluyOFmnJGRkZGRsbDx//hy65ikvs++QAAAABJRU5ErkJggg=="
+                                    alt="discord-logo--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>CND Discord:</p>
+                        <a href="https://discord.gg/Vt9rBgWvm">
+                            <div class="discord-ico" data-text="bis006">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEGElEQVR4nO2YX2hWZRzHP9PVUhi5sKbWXdO0jYmoLTDB7oLmQhO8yDYr8WJ44T8sBqHIbryxCzOxi8qGUFv/DMIgJ/4diLpFsVnq1AtXTZxQ05gJLn7wPfBw3nPOe87eM33F84ED7/v8/jy/85znz+/5QUZGRkbGA8bzwDrgE6AHuAUcBkpi2JrOCdl0y4f5Mp/3hGeArUA/MBry1MXwUxdh368+nh6PF5gK7AZGnA6HgG+BTcArQKfau4CDQB9wA/hPj/3ulaxLup2yNR/fyafn3/r6UH2nQj3wl5zfATqABqAcWKZpcS1ihPM9g/Jhvsrl+yv1ZfI/gVcLfYmXNJqjGslZwBNAa0DwV4FPNbpLgTlABfCIngq1LZXOZ8CAz8c1YLt0nwN+VLvFsGisL1EKXJSjnVqgzb7PfxrYAFQXMFg1wEbgjG/aNqvPD9R2QTElZrUcXAIeBWY4HdnXeYH0qXO+gj3T1fcl/beYEvOrjBv130anCVjC+LNEfXk0KhaLKRGLnYVm8/t+U+qsp0Rr5XMZ2aIuFloV0764Bo8B/8ioiuKhSjH9rRjzskwGZyk+uhXba3GU26TcQvHRotgsxkhKdNKOan8vNmqcbCAyOZ0nxYGYWaztJpuB88qNftfhVpqyjUeJs3vNJYItUrL0IY7TjpD86cuQgRiLjZ990rfBCOWAlNzDKN/Jf0MbxOPAcv239jdTsvHzlnQt8w7lDynFueCclK45dnlH7cdTsvFT7SSpoZemUZ0hE8jPLek/6Wt/Su03U7LxM8E55yz/y6FBwiPE42aeoIZTsgnimPTtrpTDRgn3Eg9vmrw9hqmVxCaIj6W/Pki4W0LbueLQ5Czc5Vq4rzsL942UbIJ4V/q7goQHJTTHcbCtsj1kK/0iYvtNahPECtn8EHX/SHJhKtWU/E2H2zl97okp24RVYX7JkQBXJJwdslMsiLmbpcVE9Rn0lWYr1stBhkPO9dLPWmdHm8n4MxM4qj7XBMinS3Y9yPi2hJUhh9CAU9H4CJiWfvxMk2+vcjMQUtiolNxizqFHwgMhU2iqyj13nQLaN0o1ygoIfjKwUv3elu+76iuoOGexfS89izmHaufA6lAHQdRq5/EKaF420KnSjaUfL6ouVanbXJkOwWe1UFcBO4BDvurlHfmujXjpr50sIDSVqndepi9PxcSmwfsxKolxH/MVNV1f1g7nvUTe6uMCp45kz096waDps8cp05jOe8B+4JTuG4Ma8RH9Pi/ZfunWO9u++fJTJp1DTjwW23xiMkmly2Hf9GnXLrJQKbe1/1vgbbJGPrw0fqH6aHeSQy8P26bYElOhdKAvYkpYabNQmiP89yqGKaREjeq8Vin/WSPUliCtiKJEvobluyOFmnJGRkZGRsbDx//hy65ikvs++QAAAABJRU5ErkJggg=="
+                                    alt="discord-logo--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Developer Discord:</p>
+                        <a href="https://discord.com/users/1038511982980108468">
+                            <div class="discord-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEGElEQVR4nO2YX2hWZRzHP9PVUhi5sKbWXdO0jYmoLTDB7oLmQhO8yDYr8WJ44T8sBqHIbryxCzOxi8qGUFv/DMIgJ/4diLpFsVnq1AtXTZxQ05gJLn7wPfBw3nPOe87eM33F84ED7/v8/jy/85znz+/5QUZGRkbGA8bzwDrgE6AHuAUcBkpi2JrOCdl0y4f5Mp/3hGeArUA/MBry1MXwUxdh368+nh6PF5gK7AZGnA6HgG+BTcArQKfau4CDQB9wA/hPj/3ulaxLup2yNR/fyafn3/r6UH2nQj3wl5zfATqABqAcWKZpcS1ihPM9g/Jhvsrl+yv1ZfI/gVcLfYmXNJqjGslZwBNAa0DwV4FPNbpLgTlABfCIngq1LZXOZ8CAz8c1YLt0nwN+VLvFsGisL1EKXJSjnVqgzb7PfxrYAFQXMFg1wEbgjG/aNqvPD9R2QTElZrUcXAIeBWY4HdnXeYH0qXO+gj3T1fcl/beYEvOrjBv130anCVjC+LNEfXk0KhaLKRGLnYVm8/t+U+qsp0Rr5XMZ2aIuFloV0764Bo8B/8ioiuKhSjH9rRjzskwGZyk+uhXba3GU26TcQvHRotgsxkhKdNKOan8vNmqcbCAyOZ0nxYGYWaztJpuB88qNftfhVpqyjUeJs3vNJYItUrL0IY7TjpD86cuQgRiLjZ990rfBCOWAlNzDKN/Jf0MbxOPAcv239jdTsvHzlnQt8w7lDynFueCclK45dnlH7cdTsvFT7SSpoZemUZ0hE8jPLek/6Wt/Su03U7LxM8E55yz/y6FBwiPE42aeoIZTsgnimPTtrpTDRgn3Eg9vmrw9hqmVxCaIj6W/Pki4W0LbueLQ5Czc5Vq4rzsL942UbIJ4V/q7goQHJTTHcbCtsj1kK/0iYvtNahPECtn8EHX/SHJhKtWU/E2H2zl97okp24RVYX7JkQBXJJwdslMsiLmbpcVE9Rn0lWYr1stBhkPO9dLPWmdHm8n4MxM4qj7XBMinS3Y9yPi2hJUhh9CAU9H4CJiWfvxMk2+vcjMQUtiolNxizqFHwgMhU2iqyj13nQLaN0o1ygoIfjKwUv3elu+76iuoOGexfS89izmHaufA6lAHQdRq5/EKaF420KnSjaUfL6ouVanbXJkOwWe1UFcBO4BDvurlHfmujXjpr50sIDSVqndepi9PxcSmwfsxKolxH/MVNV1f1g7nvUTe6uMCp45kz096waDps8cp05jOe8B+4JTuG4Ma8RH9Pi/ZfunWO9u++fJTJp1DTjwW23xiMkmly2Hf9GnXLrJQKbe1/1vgbbJGPrw0fqH6aHeSQy8P26bYElOhdKAvYkpYabNQmiP89yqGKaREjeq8Vin/WSPUliCtiKJEvobluyOFmnJGRkZGRsbDx//hy65ikvs++QAAAABJRU5ErkJggg=="
+                                    alt="discord-logo--v1">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Atlant World Shop:</p>
+                        <a href="https://atlantworld.com">
+                            <div class="aw-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAdElEQVR4nGNgGAVkgP8U4sFjAang/6CwQJ0KQaSJz4I6KlhQi8+Cy1BFHmQEkSdU7yVCwfOegYGBjQwLWBkYGN7iCyZY8MxlIB/MwxdMlAQPUcFEaeT+J5ThaG4BMZnlP4XyoxYwEG0BuUXy/wG3YBQwoAMAPBCxfTtTP6MAAAAASUVORK5CYII="
+                                    alt="shop">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="ico-div">
+                        <p>Atlant World You Tube:</p>
+                        <a href="https://www.youtube.com/@atlantroleplay">
+                            <div class="aw-you-tube-ico">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADIUlEQVR4nO2ZW4hNURjHf8YZoVwGo1xybRgh5TaFUi4zRCjhBcmkSCgKaR6QGEnJ5cHlQV6UkdyinPGklJjJJTPGeBITwsgw4zaOVv13rU7Zt7OZ/bB/tep0zn9937fWXpdvfwcSEhISEhISfJMPjAEWARuAPcBp4BJQDTwAGoG3wEe1ViBjtRbrt9fAc/W7DVwBTgG7gfXyMxUYBKTIkWHAPuAx8CMrqP/ZvgEXNbDArAW+ZBls0uyfBfYDm4EVwFw5KQYGAgVq3bNs9rJ+GwCMVj/TfxmwUU/6DHAdaMiawJ/A1iCDMI+1XZ3NY58n5x1BCijREjbx/AYW++nYGXipToeATsSHw4qrxo94gsRvothkEdPDOkCGeImXSniTeFKj+Mq8hNskPEE8Oa/4NnkJj0oY6HSwSAPj+XfsVXzHvYRXJVwS0lFGR6aZkD5Ez0r5MBPmyl0Jp4V0ZN87H7QETFYQFSWy/dRL+FBCc3qFwRnEZetzHTCfaBgpm++8hI0SFoV05ARvmA08sb67oXwtF/rL1i+vO65JQpNq5DoQQx6wWsmkk2acBApD2u9q+TCf/8oniUxeFMVAHHoDlUoAM8qAdwBdQvj4Lhs93UROkpYf8UAcirXEctk/79XXLLMOG8go4JqlMxnuwoA+Pvt5Is0SFcR0aaWUAXtu9ldyNJh4bvZ+1h3lSoOEZi3nOpBZwCPrO3MbjyM3imTrhZewVsLJMb0Qp/h9J7kjobnM4piilFlvrq5USVge0lEU+8CNdfJxzlUFHJDQFBfCEEUa4kal4jNlI1fKrbwojlQpvlVewpkSNuvojBu1im+6l7DQKgWZEyJOdAO+Kj5zn3iS1kBuRXziRFUOqvbbYaJVdrkPLAiZpUZBStVI515qC1o6LbPSCudIfaYa7EFgC7AcmAGMBYYqP8sLEGBfYAQwCZijDbwdOKLKYp2VsmeU9ZoqaGDMftmpp9IWoOjcblXds5uTufptrfK/yytt94uZ6eFAKbAGqACOARe0p+4B9fq7wAm6xeNvhXr1S8uOsVch+6XyF8eTMyEhISEhgdjyBx2fSCOs75EOAAAAAElFTkSuQmCC"
+                                    alt="youtube-play--v1">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <p style="text-align: center;">2026 Имя автора. Все права защищены.</p>
+            </div>
+        </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
