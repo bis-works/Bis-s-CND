@@ -96,15 +96,18 @@
                                         <div class="music-image">
                                             <img :src="page.image" alt="">
                                         </div>
-                                        <h1>Следующий человек в списке: {{ page.name }}</h1>
-                                        <h3>Вот небольшая биография:</h3>
+                                        <h1 class="font-weight">Следующий человек в списке: {{ page.name }}</h1>
+                                        <hr>
+                                        <h3 class="font-weight">Вот небольшая биография:</h3>
                                         <p class="bio-text">{{ page.biography }}</p>
+                                        <hr>
                                         <div class="col-md-6">
-                                            <h3>Любимые жанры: </h3>
+                                            <h3 class="font-weight">Любимые жанры: </h3>
                                             <p>{{page.favorite_janres }}</p>
-                                            <h3>А выбранной любимой музыкой стала:</h3>
+                                            
                                         </div>
                                         <div class="col-md-6 audio">
+                                            <h3 class="font-weight">А выбранной любимой музыкой стала:</h3>
                                             <p class="song-name">{{ page.favorite_song }}</p>
                                             <audio :ref="'audio' + index" controls>
                                                 <source :src="page.src" type="audio/mpeg">
