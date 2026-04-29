@@ -11,11 +11,11 @@ let cnd = {
                     pages: [
                         {
                             type: "image",
-                            src: "images/Обложка статьи о музыке.png"
+                            src: "images/Обложка статьи о музыке2.png"
                         },
                         {
                             type: "image",
-                            src: "images/page1.png"
+                            src: "images/page11.png"
                         },
                         {
                             type: "template",
@@ -129,11 +129,11 @@ let cnd = {
                         },
                         {
                             type: "image",
-                            src: "images/page2.png"
+                            src: "images/page22.png"
                         },
                         {
                             type: "image",
-                            src: "images/page3.png"
+                            src: "images/page33.png"
                         }
                     ]
                 }
